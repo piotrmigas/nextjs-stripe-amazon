@@ -2,6 +2,8 @@ import { MenuIcon, SearchIcon, ShoppingCartIcon } from "@heroicons/react/outline
 import { signIn, signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Image from "next/image";
+import logo from "../public/img/amazon.png";
 
 const Header = () => {
   const [session] = useSession();
@@ -12,10 +14,10 @@ const Header = () => {
     <header>
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
         <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
-          <img
+          <Image
             onClick={() => router.push("/")}
             alt=""
-            src="/img/amazon.png"
+            src={logo}
             width={150}
             height={40}
             objectFit="contain"
