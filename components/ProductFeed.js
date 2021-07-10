@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Product from "./Product";
-import banner4 from "../public/img/banner4.jpg";
 
 const ProductFeed = ({ products }) => {
   return (
@@ -8,7 +6,7 @@ const ProductFeed = ({ products }) => {
       {products.slice(0, 4).map((product) => (
         <Product key={product.id} product={product} />
       ))}
-      <Image src={banner4} className="md:col-span-full" alt="" />
+      <img src="/img/banner4.jpg" className="md:col-span-full" alt="" />
       <div className="md:col-span-2">
         {products.slice(4, 5).map((product) => (
           <Product key={product.id} product={product} />

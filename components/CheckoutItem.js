@@ -3,7 +3,6 @@ import Image from "next/image";
 import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
 import { addToBasket, removeFromBasket } from "../redux/basketSlice";
-import prime from "../public/img/prime.png";
 
 const CheckoutItem = ({ item: { image, title, rating, description, price, hasPrime, id } }) => {
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ const CheckoutItem = ({ item: { image, title, rating, description, price, hasPri
         <Currency quantity={price} currency="PLN" />
         {hasPrime && (
           <div className="flex items-center space-x-2">
-            <Image src={prime} alt="" className="w-12" />
+            <img src="/img/prime.png" alt="" className="w-12" />
             <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
           </div>
         )}

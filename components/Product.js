@@ -4,7 +4,6 @@ import { StarIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../redux/basketSlice";
-import prime from "../public/img/prime.png";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
@@ -38,7 +37,7 @@ const Product = ({ product: { id, title, price, description, category, image } }
       </div>
       {hasPrime && (
         <div className="flex items-center space-x-2 -mt-5">
-          <Image className="w-12" src={prime} alt="" />
+          <img className="w-12" src="/img/prime.png" alt="" />
           <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
         </div>
       )}
