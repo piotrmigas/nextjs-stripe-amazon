@@ -1,8 +1,9 @@
 import moment from 'moment';
-import { GetSessionParams, getSession, useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import Order from '../components/Order';
 import Header from '../components/Header';
 import db from '../firebase';
+import { GetServerSidePropsContext } from 'next';
 
 type Props = {
   orders: Order[];
@@ -27,7 +28,7 @@ export default function Orders({ orders }: Props) {
   );
 }
 
-export async function getServerSideProps(context: GetSessionParams | undefined) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
   const session = await getSession(context);
 
@@ -37,12 +38,9 @@ export async function getServerSideProps(context: GetSessionParams | undefined) 
     };
   }
 
-  const stripeOrders = await db
-    .collection('users')
-    .doc(session?.user?.email)
-    .collection('orders')
-    .orderBy('timestamp', 'desc')
-    .get();
+  const email = session?.user?.email as string;
+
+  const stripeOrders = await db.collection('users').doc(email).collection('orders').orderBy('timestamp', 'desc').get();
 
   const orders = await Promise.all(
     stripeOrders.docs.map(async (order: any) => ({
